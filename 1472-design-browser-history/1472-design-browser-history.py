@@ -1,31 +1,32 @@
 class Node:
-    def __init__(self, val=None, next=None, prev =None):
+    def __init__(self, val, prev=None, next=None):
         self.val = val
-        self.next =next
-        self.prev = prev 
-
+        self.prev = prev
+        self.next = next
+        
 class BrowserHistory:
 
     def __init__(self, homepage: str):
-        self.curr = Node(homepage)        
+        self.curr=Node(homepage)        
 
     def visit(self, url: str) -> None:
-        self.curr.next = Node(url, prev = self.curr)
-        self.curr = self.curr.next  #updated pointer 
-                
+        self.curr.next = Node(url,self.curr)
+        self.curr = self.curr.next 
+        
 
     def back(self, steps: int) -> str:
-        while self.curr.prev  and steps > 0: 
+        while self.curr.prev and steps > 0:
             self.curr = self.curr.prev
-            steps-=1
-        return self.curr.val 
+            steps-=1 
+        return self.curr.val # 요부분 주의할 것 self.curr.prev.val이 아님 
 
 
     def forward(self, steps: int) -> str:
-        while self.curr.next and steps >0:
-            self.curr = self.curr.next 
-            steps-=1
-        return self.curr.val 
+        while self.curr.next and steps > 0:
+            self.curr = self.curr.next
+            steps-=1 
+        return self.curr.val # 요부분 주의할 것 self.curr.prev.val이 아님 
+        
 
 
 # Your BrowserHistory object will be instantiated and called as such:
