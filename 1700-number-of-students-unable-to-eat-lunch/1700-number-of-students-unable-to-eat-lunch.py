@@ -12,7 +12,7 @@ class Solution:
 
         # 샌드위치를 처리
         for s in sandwiches:
-            if cnt.get(s, 0) > 0:  # 샌드위치를 원하는 학생이 있는 경우
+            if cnt.get(s, 0)> 0:  # 샌드위치를 원하는 학생이 있는 경우
                 res -= 1
                 cnt[s] -= 1
             else:  # 샌드위치를 원하는 학생이 없는 경우
