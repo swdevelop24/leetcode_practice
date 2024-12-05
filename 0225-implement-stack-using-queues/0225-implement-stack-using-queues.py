@@ -1,7 +1,7 @@
 class MyStack:
 
     def __init__(self):
-        self.q =[] 
+        self.q =deque() 
         self.size=0 
         
 
@@ -10,11 +10,11 @@ class MyStack:
         self.size +=1
 
     def pop(self) -> int:
-        if self.size >0:
-            ret = self.q.pop()
-            self.size -=1
-            return ret
-
+        if self.size > 0:
+            for i in range(self.size - 1):
+                self.q.append(self.q.popleft()) 
+            self.size -= 1
+        return self.q.popleft() 
     def top(self) -> int:
         if self.size > 0: 
             return self.q[-1]        
